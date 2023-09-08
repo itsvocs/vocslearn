@@ -2,26 +2,151 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-}
+@layer components {
+  /* Les composents de bases  */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+  /* Les textes */
+  .title {
+    @apply font-black text-primary dark:text-colorBrut leading-9 tracking-tight;
+  }
+  .paragraphe {
+    @apply text-color dark:text-colorDark;
+  }
+
+  /* Les liens */
+  .link {
+    @apply text-sm leading-6;
+  }
+
+  .link-ghost {
+    @apply link transition-opacity hover:underline underline-offset-2 text-color hover:text-primary dark:text-colorDark dark:hover:text-colorBrut;
+  }
+
+  .link-blue {
+    @apply link text-secondary dark:text-secondaryDark hover:opacity-80 transition-opacity;
+  }
+  .link-underline {
+    @apply link underline;
+  }
+
+  /* Les bouttons  */
+  .btn {
+    @apply inline-flex justify-center items-center rounded-md px-4 py-2 font-medium text-sm transition-colors leading-6 shadow-sm focus-visible:outline-none focus-visible:outline-2 focus-visible:outline-offset-2 border-gray-800;
+  }
+
+  .btn-primary {
+    @apply btn dark:text-primary bg-black  text-white dark:bg-white dark:hover:bg-primaryDark hover:bg-primary/90;
+  }
+  .btn-secondary {
+    @apply btn text-primaryDark bg-gray-100  dark:bg-gray-800 dark:hover:bg-gray-900 hover:bg-gray-50;
+  }
+
+  .btn-destructive {
+    @apply btn text-colorBrut bg-red  dark:bg-redBlack dark:hover:bg-opacity-75;
+  }
+  .btn-loading {
+    @apply btn text-white bg-gray-500  dark:text-black dark:bg-gray-500 bg-opacity-40 cursor-not-allowed;
+  }
+  .btn-outline {
+    @apply btn text-primary  dark:text-primaryDark  dark:hover:bg-zinc-900 hover:bg-gray-100 bg-transparent border border-gray-200 dark:border-zinc-800;
+  }
+
+  .btn-ghost {
+    @apply btn text-primary shadow-none hover:shadow-sm  dark:text-primaryDark  dark:hover:bg-zinc-900 hover:bg-gray-100 bg-transparent;
+  }
+
+  /* fragment deroulant et menu  */
+  .frag-menu {
+    @apply absolute right-0 z-10 mt-2 w-full divide-y divide-zinc-100 dark:divide-zinc-800 rounded-md bg-white dark:bg-black shadow-sm border dark:border-zinc-900 border-zinc-100 focus:outline-none overflow-hidden flex flex-col text-color dark:text-colorDark;
+  }
+
+  /* Les formulaires et les entrées  */
+  .form-inputs {
+    @apply relative mt-2 rounded-md;
+  }
+  .label {
+    @apply block text-sm leading-6 font-medium text-primary dark:text-primaryDark;
+  }
+  .input {
+    @apply block w-full rounded-md border-0 py-2 pr-10 sm:text-sm ring-inset  
+    sm:leading-6 placeholder:opacity-40 text-primary dark:text-primaryDark dark:placeholder:text-colorBrut;
+  }
+  .input-default {
+    @apply input bg-primary/5 dark:bg-primaryDark/10 ring-primary/0 focus:ring-primary/20 dark:ring-primaryDark/0 focus:dark:ring-primaryDark/20;
+  }
+  .input-error {
+    @apply input bg-red/5 ring-1 focus:ring-[1.5px] ring-red/80 focus:ring-red text-red;
+  }
+  .input-radio {
+    @apply h-4 w-4 text-zinc-200 dark:text-zinc-800  bg-primary/10 dark:bg-primaryDark/20 focus:ring-0 border-transparent focus:border-transparent ring-transparent focus:ring-transparent outline-transparent focus:outline-transparent;
+  }
+
+  .input-checkbox-box {
+    @apply relative inline-flex h-[20px] w-[36px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white focus-visible:ring-opacity-75;
+  }
+
+  .input-checkbox-span {
+    @apply pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white dark:bg-black shadow-lg ring-0 transition duration-200 ease-in-out;
+  }
+  .msg-error {
+    @apply text-xs text-red font-medium pt-1;
+  }
+  .input-succes {
+  }
+  .stepper-button {
+    @apply block w-2.5 h-2.5 rounded-full cursor-pointer;
+  }
+
+  /* global class */
+
+  .mx-div {
+    @apply mx-auto flex w-full max-w-8xl px-4;
+  }
+
+  .info {
+    @apply rounded-md px-2 py-1 text-xs font-[450];
+  }
+  .info-green {
+    @apply info bg-green-50 dark:bg-green-950/30 text-green-700 ring-inset ring-1 ring-green-600/20;
+  }
+  .info-rot {
+    @apply info bg-rose-50 dark:bg-rose-950/30 text-rose-700 ring-inset ring-1 ring-rose-600/10;
+  }
+  .info-blau {
+    @apply info bg-blue-50 dark:bg-blue-950/30 text-blue-700 ring-inset ring-1 ring-blue-700/10;
+  }
+  .info-zinc {
+    @apply info bg-zinc-100 dark:bg-zinc-50/10 text-zinc-800 dark:text-zinc-300 ring-inset ring-1 ring-zinc-500/10;
+  }
+
+  /* Light & Dark Mode Css  */
+
+  .global-theme-div {
+    @apply items-center rounded-md border-2 border-zinc-100 dark:border-zinc-800 hover:shadow-sm bg-white dark:bg-black p-1 transition-colors hover:border-zinc-500;
+  }
+  .global-theme-title {
+    @apply h-2 w-1/2 rounded-lg;
+  }
+  .global-theme-text {
+    @apply h-2 w-2/3 rounded-lg;
+  }
+  .global-theme-image {
+    @apply h-4 w-4 rounded-full;
+  }
+
+  .global-theme-content {
+    @apply items-center space-x-2 rounded-md p-2 shadow-sm;
+  }
+  .global-theme-content-1 {
+    @apply space-y-3 rounded-md p-2 shadow-sm;
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+@layer utilities {
+  .filter-none {
+    filter: none;
+  }
+  .filter-grayscale {
+    filter: grayscale(100%);
+  }
 }
